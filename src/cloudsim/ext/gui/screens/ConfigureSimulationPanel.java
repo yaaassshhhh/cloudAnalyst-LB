@@ -716,13 +716,18 @@ public class ConfigureSimulationPanel extends JPanel
 			do {
 				ubName = "UB" + userBases++;
 			} while (!ubTableModel.isUnique(ubName, 0));
-			userBasesList.add(new UserBaseUIElement(ubName, 
-													 DEFAULT_UB_REGION, 
-													 DEFAULT_REQ_PER_USER_PER_HR,
-													 DEFAULT_REQ_SIZE,
-													 DEFAULT_PEAK_HOURS,
-													 DEFAULT_PEAK_USERS,
-													 DEFAULT_OFFPEAK_USERS));	
+			
+			for(int i = 0 ; i < 2000 ; i++) {				
+				userBasesList.add(new UserBaseUIElement(ubName, 
+						 (int)(Math.floor(Math.random() * 6)), 
+						 DEFAULT_REQ_PER_USER_PER_HR,
+						 DEFAULT_REQ_SIZE,
+						 DEFAULT_PEAK_HOURS,
+						 DEFAULT_PEAK_USERS,
+						 DEFAULT_OFFPEAK_USERS));
+				ubName = "UB" + userBases++;
+
+			}
 			ubTableModel.fireTableDataChanged();
 		} else if (e.getActionCommand().equals(CMD_REMOVE_USERBASE)){
 			int selectedRow = userBasesTable.getSelectedRow();
